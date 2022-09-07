@@ -1,4 +1,3 @@
-const crypto = require("crypto");
 const utils = require('./utils/utils')
 const {digest} = require('./utils/crypto-utils')
 
@@ -39,7 +38,7 @@ exports.deterministicPartitionKey = (event) => {
     candidate = TRIVIAL_PARTITION_KEY;
   }
 
-  // IF CANDIDATE LENGTH > MAX_PARTITION_KEY_LENGTH, DIGEST AGAIN.
+  // IF CANDIDATE LENGTH > MAX_PARTITION_KEY_LENGTH, DIGEST AGAIN. BUT WONT WORK IF CANDIDATE IS NUMBER. IT WILL RETURN NULL.
   if (candidate.length > MAX_PARTITION_KEY_LENGTH) {
     candidate = digest(candidate);
   }
